@@ -39,8 +39,8 @@
   <header style="position:fixed; top:0; left:0; right:0; z-index:90; background:#E01E1E">
     <div aria-hidden="true" style="position:absolute; inset:0; background-image:repeating-linear-gradient(135deg, rgba(10,10,10,0.07) 0 2px, transparent 2px 14px); pointer-events:none"></div>
     <div style="position:relative; max-width:1240px; margin:0 auto; padding:0.7rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem">
-      <a href="Bistro Porcoes.dc.html" style="display:flex; align-items:center; gap:0.65rem; color:#F5F0E8">
-        <span style="width:1.15rem; height:1.15rem; background:#0A0A0A; transform:rotate(45deg); display:flex; align-items:center; justify-content:center; flex:none"><span style="width:0.45rem; height:0.45rem; background:#1E2A8C; display:block"></span></span>
+      <a href="Bistro Porcoes.dc.html" aria-label="Voltar para a página inicial" style="display:flex; align-items:center; gap:0.65rem; color:#F5F0E8">
+        <span aria-hidden="true" style="width:2.25rem; height:2.25rem; flex:none; display:flex; align-items:center; justify-content:center; background:#0A0A0A; border-radius:100px; box-shadow:0 6px 16px -8px rgba(10,10,10,0.9)"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#F5F0E8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></span>
         <span style="display:flex; flex-direction:column; line-height:1">
           <span style="font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; font-size:clamp(0.95rem,3.2vw,1.15rem)">Bistrô Porções</span>
           <span style="font-family:'Oswald',sans-serif; letter-spacing:0.24em; text-transform:uppercase; font-size:0.55rem; color:#0A0A0A; margin-top:0.2rem; font-weight:600">Cardápio · Pedido online</span>
@@ -61,7 +61,7 @@
   <section style="position:relative; overflow:hidden; padding:clamp(2.5rem,7vw,4.5rem) 1.25rem clamp(1.5rem,4vw,2.5rem)">
     <div aria-hidden="true" style="position:absolute; left:50%; top:0.1em; transform:translateX(-50%); font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; font-size:clamp(5rem,20vw,15rem); line-height:1; color:transparent; -webkit-text-stroke:2px rgba(245,240,232,0.07); white-space:nowrap; pointer-events:none; user-select:none">Cardápio</div>
     <div style="position:relative; max-width:1240px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.9rem">
-      <span style="display:flex; align-items:center; gap:0.6rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.24em; font-size:0.72rem; color:#E01E1E"><span style="width:0.45rem; height:0.45rem; background:#1E2A8C; transform:rotate(45deg); display:block"></span>Peça online</span>
+      <span style="display:flex; align-items:center; gap:0.6rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.24em; font-size:0.72rem; color:#E01E1E">Peça online</span>
       <h1 style="margin:0; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; line-height:0.92; font-size:clamp(2.2rem,8vw,4.5rem)">Monte seu pedido</h1>
       <p style="margin:0; max-width:34rem; font-size:clamp(0.95rem,2.6vw,1.08rem); line-height:1.65; color:rgba(245,240,232,0.7); text-wrap:pretty">Escolha o tamanho, adicione ao carrinho e envie tudo pronto pelo WhatsApp. A gente confirma valor e tempo de entrega na hora.</p>
     </div>
@@ -70,7 +70,7 @@
   <div style="position:sticky; top:66px; z-index:45; padding:0.75rem 1.25rem; background:rgba(10,10,10,0.94); backdrop-filter:blur(10px); border-top:1px solid rgba(224,30,30,0.4); border-bottom:1px solid rgba(224,30,30,0.4); box-shadow:0 18px 40px -24px rgba(0,0,0,0.9)">
     <div style="position:absolute; top:-1px; left:0; width:100%; height:2px; background:linear-gradient(90deg, transparent, #E01E1E 30%, #E01E1E 70%, transparent)"></div>
     <div style="max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:clamp(0.5rem,2vw,0.75rem); flex-wrap:wrap">
-      <span style="display:{{ tabLabelDisplay }}; align-items:center; gap:0.55rem; background:#0A0A0A; border:1px solid rgba(245,240,232,0.2); color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em; font-size:0.7rem; padding:0 1.6rem 0 1rem; min-height:48px; clip-path:polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)"><span style="width:0.42rem; height:0.42rem; background:#1E2A8C; transform:rotate(45deg); display:block"></span>Cardápio</span>
+      <span style="display:{{ tabLabelDisplay }}; align-items:center; gap:0.55rem; background:#0A0A0A; border:1px solid rgba(245,240,232,0.2); color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em; font-size:0.7rem; padding:0 1.6rem 0 1rem; min-height:48px; clip-path:polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)">Cardápio</span>
       <button type="button" onClick="{{ pickPorcoes }}" style="min-height:48px; padding:0 clamp(1.1rem,4vw,2rem); font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(0.8rem,2.6vw,0.9rem); cursor:pointer; clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1); border:1px solid {{ tabBorderA }}; background:{{ tabBgA }}; color:{{ tabFgA }}" style-hover="transform:translateY(-2px)">Porções</button>
       <button type="button" onClick="{{ pickDoces }}" style="min-height:48px; padding:0 clamp(1.1rem,4vw,2rem); font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(0.8rem,2.6vw,0.9rem); cursor:pointer; clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1); border:1px solid {{ tabBorderB }}; background:{{ tabBgB }}; color:{{ tabFgB }}" style-hover="transform:translateY(-2px)">Doces</button>
       <button type="button" onClick="{{ pickBebidas }}" style="min-height:48px; padding:0 clamp(1.1rem,4vw,2rem); font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(0.8rem,2.6vw,0.9rem); cursor:pointer; clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1); border:1px solid {{ tabBorderC }}; background:{{ tabBgC }}; color:{{ tabFgC }}" style-hover="transform:translateY(-2px)">Bebidas</button>
@@ -99,6 +99,13 @@
           <button type="button" onClick="{{ d.add }}" style="min-height:48px; display:flex; align-items:center; justify-content:center; gap:0.5rem; cursor:pointer; border:none; border-radius:2px; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:0.88rem; transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-2px); background:#F5F0E8; color:#0A0A0A">{{ d.addLabel }}</button>
         </article>
       </sc-for>
+    </div>
+
+    <div style="max-width:1240px; margin:clamp(2rem,6vw,3rem) auto 0; display:flex; justify-content:center">
+      <a href="Bistro Porcoes.dc.html" style="display:flex; align-items:center; justify-content:center; gap:0.6rem; min-height:52px; padding:0 clamp(1.5rem,6vw,2.25rem); border:1px solid rgba(245,240,232,0.28); border-radius:100px; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(0.82rem,2.6vw,0.9rem); transition:background .3s ease, border-color .3s ease, color .3s ease" style-hover="background:#F5F0E8; border-color:#F5F0E8; color:#0A0A0A">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+        Voltar ao início
+      </a>
     </div>
   </section>
 
