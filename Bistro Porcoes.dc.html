@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bistrô Porções — Sabores do Pará e muito mais!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Archivo:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background-color: #0A0A0A;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.30'/%3E%3C/svg%3E");
+    color: #F5F0E8;
+    font-family: 'Archivo', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: #E01E1E; text-decoration: none; }
+  a:hover { color: #F5F0E8; }
+  ::selection { background: #E01E1E; color: #F5F0E8; }
+  @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(224,30,30,0.55); } 70% { box-shadow: 0 0 0 18px rgba(224,30,30,0); } 100% { box-shadow: 0 0 0 0 rgba(224,30,30,0); } }
+  @keyframes emberGlow { 0%, 100% { opacity: 0.42; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.75; transform: translate(-50%, -50%) scale(1.14); } }
+  @keyframes sweep { from { transform: translateX(-120%) skewX(-18deg); } to { transform: translateX(320%) skewX(-18deg); } }
+  @keyframes progressGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes ctaBeat { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(224,30,30,0.55), 0 16px 40px -14px rgba(224,30,30,0.9); } 50% { transform: scale(1.04); box-shadow: 0 0 0 16px rgba(224,30,30,0), 0 20px 46px -14px rgba(224,30,30,0.95); } }
+  @keyframes ctaShake {
+    0%, 62%, 100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); box-shadow: 0 16px 40px -14px rgba(224,30,30,0.9); }
+    64% { transform: translate3d(-6px,0,0) rotate(-3deg) scale(1.06); }
+    67% { transform: translate3d(6px,-2px,0) rotate(3deg) scale(1.06); }
+    70% { transform: translate3d(-5px,0,0) rotate(-2.5deg) scale(1.05); }
+    73% { transform: translate3d(5px,-2px,0) rotate(2.5deg) scale(1.05); }
+    76% { transform: translate3d(-3px,0,0) rotate(-1.5deg) scale(1.03); }
+    79% { transform: translate3d(3px,0,0) rotate(1.5deg) scale(1.03); }
+    82% { transform: translate3d(0,-3px,0) rotate(0deg) scale(1.05); box-shadow: 0 0 0 14px rgba(224,30,30,0), 0 22px 48px -14px rgba(224,30,30,0.95); }
+    86% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</helmet>
+
+<div style="max-width:100%">
+
+  <header style="position:fixed; top:0; left:0; right:0; z-index:90; background:#E01E1E">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:repeating-linear-gradient(135deg, rgba(10,10,10,0.07) 0 2px, transparent 2px 14px); pointer-events:none"></div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:0.7rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem">
+      <a href="#topo" style="display:flex; align-items:center; gap:0.65rem; color:#F5F0E8">
+        
+        <span style="display:flex; flex-direction:column; line-height:1">
+          <span style="font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; font-size:clamp(0.95rem,3.2vw,1.15rem); text-shadow:0 2px 10px rgba(10,10,10,0.35)">Bistrô Porções</span>
+          <span style="font-family:'Oswald',sans-serif; letter-spacing:0.24em; text-transform:uppercase; font-size:0.55rem; color:#0A0A0A; margin-top:0.2rem; font-weight:600">Sabores do Pará · Desde 2019</span>
+        </span>
+      </a>
+      <nav style="display:{{ navDisplay }}; align-items:stretch; gap:0.25rem">
+        <a href="#sobre" style="display:flex; align-items:center; padding:0.65rem 0.9rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:0.85rem; color:#F5F0E8; border-bottom:2px solid transparent; transition:color .25s ease, border-color .25s ease, background .25s ease" style-hover="color:#F5F0E8; border-color:#0A0A0A; background:rgba(10,10,10,0.18)">Sobre</a>
+        <a href="Cardapio.dc.html" style="display:flex; align-items:center; padding:0.65rem 0.9rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:0.85rem; color:#F5F0E8; border-bottom:2px solid transparent; transition:color .25s ease, border-color .25s ease, background .25s ease" style-hover="color:#F5F0E8; border-color:#0A0A0A; background:rgba(10,10,10,0.18)">Cardápio</a>
+        <a href="#delivery" style="display:flex; align-items:center; padding:0.65rem 0.9rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:0.85rem; color:#F5F0E8; border-bottom:2px solid transparent; transition:color .25s ease, border-color .25s ease, background .25s ease" style-hover="color:#F5F0E8; border-color:#0A0A0A; background:rgba(10,10,10,0.18)">Delivery</a>
+        <a href="#local" style="display:flex; align-items:center; padding:0.65rem 0.9rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:0.85rem; color:#F5F0E8; border-bottom:2px solid transparent; transition:color .25s ease, border-color .25s ease, background .25s ease" style-hover="color:#F5F0E8; border-color:#0A0A0A; background:rgba(10,10,10,0.18)">Localização</a>
+        <a href="{{ waLink }}" target="_blank" rel="noopener" style="position:relative; overflow:hidden; display:flex; align-items:center; gap:0.5rem; margin-left:0.75rem; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem; color:#F5F0E8; background:#0A0A0A; padding:0 1.2rem; clip-path:polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); box-shadow:0 8px 24px -8px rgba(10,10,10,0.7); transition:background .3s ease, color .3s ease" style-hover="background:#F5F0E8; color:#0A0A0A" style-before="content:''; position:absolute; top:0; left:0; width:38%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation:sweep 4.2s ease-in-out infinite; pointer-events:none">Peça agora</a>
+      </nav>
+      <button type="button" onClick="{{ toggleMenu }}" aria-label="Abrir menu" style="display:{{ burgerDisplay }}; width:44px; height:44px; align-items:center; justify-content:center; flex-direction:column; gap:5px; background:transparent; border:1px solid rgba(245,240,232,0.25); border-radius:2px; cursor:pointer; padding:0">
+        <span style="width:20px; height:2px; background:#F5F0E8; display:block"></span>
+        <span style="width:20px; height:2px; background:#F5F0E8; display:block"></span>
+        <span style="width:20px; height:2px; background:#F5F0E8; display:block"></span>
+      </button>
+    </div>
+    <div style="display:{{ drawerDisplay }}; flex-direction:column; padding:0.5rem 1.25rem 1.25rem; gap:0.15rem; border-top:1px solid rgba(245,240,232,0.1)">
+      <a href="#sobre" onClick="{{ closeMenu }}" style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:1rem; color:#F5F0E8; padding:0.85rem 0; border-bottom:1px solid rgba(245,240,232,0.08)">Sobre</a>
+      <a href="Cardapio.dc.html" onClick="{{ closeMenu }}" style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:1rem; color:#F5F0E8; padding:0.85rem 0; border-bottom:1px solid rgba(245,240,232,0.08)">Cardápio</a>
+      <a href="#delivery" onClick="{{ closeMenu }}" style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:1rem; color:#F5F0E8; padding:0.85rem 0; border-bottom:1px solid rgba(245,240,232,0.08)">Delivery</a>
+      <a href="#local" onClick="{{ closeMenu }}" style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:1rem; color:#F5F0E8; padding:0.85rem 0">Localização</a>
+    </div>
+    <div style="height:3px; width:100%; background:linear-gradient(90deg, #0A0A0A, rgba(10,10,10,0.25) 45%, rgba(10,10,10,0.25) 55%, #0A0A0A)"></div>
+  </header>
+  <div style="height:66px"></div>
+
+  <section id="topo" data-screen-label="Hero" style="position:relative; overflow:hidden">
+    <div style="position:relative; width:100%; overflow:hidden; isolation:isolate">
+      <div style="position:absolute; left:50%; top:50%; width:min(130vw,1500px); height:min(130vw,1500px); background:radial-gradient(circle, rgba(224,30,30,0.30), transparent 62%); animation:emberGlow 7s ease-in-out infinite; pointer-events:none; z-index:1"></div>
+      <img data-hero="" src="public/banner1.webp" alt="Bistrô Porções — Sabores do Pará e muito mais! Desde 2019" style="position:relative; z-index:2; width:100%; height:auto; display:block">
+      <img src="public/banner2.webp" alt="Atendemos desde 2019 — Almoço Seg a Sáb, Jantar Qui a Dom. Tacacá, vatapá, maniçoba e muito mais. Atendemos em toda Belém - PA" style="position:relative; z-index:2; width:100%; height:auto; display:block; margin-top:-1px">
+    </div>
+
+    <div onMouseEnter="{{ carPause }}" onMouseLeave="{{ carResume }}" style="position:relative; width:100%; display:flex; align-items:stretch; background:#0D0C0B; border-top:1px solid rgba(224,30,30,0.4); border-bottom:1px solid rgba(224,30,30,0.4); overflow:hidden">
+      <div style="display:{{ carLabelDisplay }}; flex:none; align-items:center; gap:0.6rem; background:#E01E1E; color:#F5F0E8; padding:0 2.4rem 0 clamp(1.25rem,4vw,3rem); clip-path:polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%)">
+        
+        <span style="font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.18em; font-size:0.78rem; white-space:nowrap">Estrelas da casa</span>
+      </div>
+      <div style="flex:1; min-width:0; overflow:hidden">
+        <div style="display:flex; height:100%; transform:translateX({{ carX }}); transition:transform .65s cubic-bezier(.22,1,.36,1)">
+          <sc-for list="{{ featured }}" as="f" hint-placeholder-count="3">
+            <div style="flex:0 0 100%; min-width:100%; display:flex; align-items:center; gap:clamp(0.75rem,2.5vw,1.5rem); padding:0.9rem clamp(1rem,3vw,2rem); min-height:64px">
+              <span style="font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; font-size:clamp(1.15rem,3.4vw,1.5rem); line-height:1; color:#F5F0E8; white-space:nowrap">{{ f.name }}</span>
+              <span style="flex:none; width:1px; height:1.6rem; background:rgba(245,240,232,0.2); display:{{ carDescDisplay }}"></span>
+              <span style="flex:1; min-width:0; font-size:0.88rem; line-height:1.4; color:rgba(245,240,232,0.6); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:{{ carDescDisplay }}">{{ f.desc }}</span>
+              <span style="flex:none; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-size:clamp(0.8rem,2.4vw,0.95rem); color:#E01E1E; white-space:nowrap">{{ f.price }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:none; display:flex; align-items:center; gap:clamp(0.5rem,2vw,1rem); padding:0 clamp(0.75rem,3vw,2.5rem) 0 0.5rem">
+        <span style="display:{{ carDescDisplay }}; font-family:'Oswald',sans-serif; font-size:0.78rem; letter-spacing:0.18em; color:rgba(245,240,232,0.45); white-space:nowrap"><span style="color:#F5F0E8">{{ carIdx }}</span> / {{ carTotal }}</span>
+        <div style="display:flex; gap:0.4rem">
+          <button type="button" onClick="{{ carPrev }}" aria-label="Anterior" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid rgba(245,240,232,0.25); border-radius:2px; cursor:pointer; color:rgba(245,240,232,0.7); font-size:1.35rem; line-height:1; padding:0 0 3px; transition:border-color .25s ease, color .25s ease, background .25s ease" style-hover="border-color:#E01E1E; color:#F5F0E8; background:rgba(224,30,30,0.15)">‹</button>
+          <button type="button" onClick="{{ carNext }}" aria-label="Próximo" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid rgba(245,240,232,0.25); border-radius:2px; cursor:pointer; color:rgba(245,240,232,0.7); font-size:1.35rem; line-height:1; padding:0 0 3px; transition:border-color .25s ease, color .25s ease, background .25s ease" style-hover="border-color:#E01E1E; color:#F5F0E8; background:rgba(224,30,30,0.15)">›</button>
+        </div>
+      </div>
+      <div data-car-progress="" style="position:absolute; bottom:0; left:0; width:100%; height:2px; background:#E01E1E; transform-origin:left; transform:scaleX(0); animation:progressGrow 4.2s linear forwards"></div>
+    </div>
+    <h1 style="position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap">Bistrô Porções — Sabores do Pará e muito mais!</h1>
+  </section>
+
+  <section id="sobre" data-screen-label="Sobre" style="scroll-margin-top:80px; padding:clamp(2.5rem,7vw,4.5rem) 1.25rem clamp(3rem,9vw,6rem); overflow:hidden">
+    <div data-sobre-stage="" style="max-width:1240px; margin:0 auto; perspective:1000px">
+      <div data-sobre-header="" style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem; will-change:transform">
+        <span style="display:flex; align-items:center; gap:0.6rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.24em; font-size:0.85rem; color:#E01E1E"><span style="width:2.2rem; height:2px; background:#E01E1E; display:block"></span>Sobre a casa</span>
+        <h2 style="margin:0; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; line-height:1.22; font-size:clamp(2.6rem,9vw,4.75rem)"><span style="color:#E01E1E">Desde 2019</span><br>Comida típica paraense</h2>
+        <div style="width:5.5rem; height:3px; background:linear-gradient(90deg, #E01E1E 60%, #1E2A8C 60%)"></div>
+      </div>
+
+      <div data-sobre-card="" style="margin-top:clamp(1.5rem,4vw,2.5rem); padding:clamp(1.25rem,4vw,2.5rem); background:#141312; border:3px solid rgba(245,240,232,0.12); border-radius:24px; box-shadow:0 9px 20px rgba(0,0,0,0.3), 0 37px 37px rgba(0,0,0,0.26), 0 84px 50px rgba(0,0,0,0.15); transform-origin:50% 0%; will-change:transform">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:clamp(1.5rem,5vw,3.5rem); align-items:center">
+          <div style="display:flex; flex-direction:column; gap:1.4rem">
+        <p style="margin:0; font-size:clamp(1.05rem,3vw,1.3rem); line-height:1.75; color:#F5F0E8; max-width:38rem; text-wrap:pretty">Sete anos servindo Belém com o tempero de casa: jambu colhido cedo, tucupi na medida certa e panela cheia todo santo dia. <strong style="color:#E01E1E; font-weight:600">Porções generosas, preço justo</strong> e aquele sabor de almoço de domingo — de segunda a domingo.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:1.75rem; padding-top:0.5rem">
+          <div style="display:flex; flex-direction:column; gap:0.15rem">
+            <span style="font-family:'Oswald',sans-serif; font-size:clamp(1.8rem,6vw,2.6rem); line-height:1; color:#E01E1E">2019</span>
+            <span style="font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,240,232,0.55)">Ano de fundação</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.15rem">
+            <span style="font-family:'Oswald',sans-serif; font-size:clamp(1.8rem,6vw,2.6rem); line-height:1; color:#E01E1E">17</span>
+            <span style="font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,240,232,0.55)">Itens no cardápio</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.15rem">
+            <span style="font-family:'Oswald',sans-serif; font-size:clamp(1.8rem,6vw,2.6rem); line-height:1; color:#E01E1E">R$ 5,99</span>
+            <span style="font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,240,232,0.55)">Porção a partir de</span>
+          </div>
+        </div>
+          </div>
+
+      <div style="display:flex; flex-direction:column; gap:1rem">
+        <div style="border:1px solid rgba(245,240,232,0.18); background:rgba(245,240,232,0.03); padding:clamp(1.25rem,4vw,1.75rem); display:flex; flex-direction:column; gap:1.1rem">
+          <div style="display:flex; align-items:center; gap:0.6rem">
+            
+            <h3 style="margin:0; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:0.95rem">Horários</h3>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:1rem; padding-bottom:1rem; border-bottom:1px dashed rgba(245,240,232,0.2)">
+            <div style="display:flex; flex-direction:column">
+              <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:clamp(1.1rem,4vw,1.4rem); letter-spacing:0.04em">Almoço</span>
+              <span style="font-size:0.8rem; color:rgba(245,240,232,0.55)">Serviço completo de porções</span>
+            </div>
+            <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:clamp(0.9rem,3vw,1.05rem); color:#E01E1E; text-align:right; white-space:nowrap">Seg a Sáb</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:1rem">
+            <div style="display:flex; flex-direction:column">
+              <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:clamp(1.1rem,4vw,1.4rem); letter-spacing:0.04em">Jantar</span>
+              <span style="font-size:0.8rem; color:rgba(245,240,232,0.55)">Delivery até fechar</span>
+            </div>
+            <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:clamp(0.9rem,3vw,1.05rem); color:#E01E1E; text-align:right; white-space:nowrap">Qui a Dom</span>
+          </div>
+        </div>
+        <div style="position:relative; overflow:hidden; border:1px solid rgba(245,240,232,0.14); border-radius:3px; box-shadow:0 26px 60px -36px rgba(0,0,0,0.95)">
+          <img src="public/bt.webp" alt="Salão do Bistrô Porções com mesas, cadeiras e luzes" style="width:100%; height:auto; display:block">
+          <span style="position:absolute; top:0; left:0; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.16em; font-size:0.6rem; padding:0.35rem 0.7rem">Nosso espaço</span>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cardapio" data-screen-label="Cardápio" style="scroll-margin-top:80px; padding:clamp(3rem,9vw,6rem) 1.25rem; border-top:1px solid rgba(245,240,232,0.12)">
+    <div style="max-width:1240px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(1.5rem,4vw,2.5rem)">
+      <div data-reveal="" style="display:flex; flex-direction:column; gap:0.75rem; align-items:center; text-align:center">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em; font-size:0.72rem; color:#E01E1E">Cardápio</span>
+        <h2 style="margin:0; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; line-height:0.95; font-size:clamp(2rem,8vw,4rem)">O que sai da panela</h2>
+        <p style="margin:0; max-width:32rem; color:rgba(245,240,232,0.6); font-size:clamp(0.9rem,2.5vw,1rem); line-height:1.6">Porções em dois tamanhos: <strong style="color:#F5F0E8; font-weight:600">P</strong> para matar a vontade, <strong style="color:#F5F0E8; font-weight:600">G</strong> para dividir.</p>
+      </div>
+
+      <div data-stack-stage="" onPointerDown="{{ dragStart }}" onPointerUp="{{ dragEnd }}" onPointerCancel="{{ dragEnd }}" style="position:relative; width:100%; height:{{ stageH }}; perspective:1200px; overflow:hidden; touch-action:pan-y">
+        <div aria-hidden="true" style="position:absolute; left:50%; bottom:2.5rem; transform:translateX(-50%); width:70%; height:9rem; background:radial-gradient(ellipse at center, rgba(224,30,30,0.22), transparent 70%); filter:blur(28px); pointer-events:none"></div>
+        <sc-for list="{{ items }}" as="item" hint-placeholder-count="5">
+          <article onClick="{{ item.go }}" style="position:absolute; left:50%; top:0; margin-left:{{ item.marginLeft }}; width:{{ cardW }}; height:{{ cardH }}; z-index:{{ item.z }}; opacity:{{ item.opacity }}; visibility:{{ item.vis }}; cursor:pointer; transform:{{ item.transform }}; transform-style:preserve-3d; transition:transform 1.05s cubic-bezier(.16,1,.3,1), opacity .8s ease, box-shadow .8s ease, border-color .6s ease; overflow:hidden; border:1px solid {{ item.borderColor }}; background:#121110; padding:clamp(1rem,3vw,1.25rem); display:flex; flex-direction:column; gap:0.6rem; border-radius:3px; box-shadow:{{ item.shadow }}">
+            <sc-if value="{{ item.star }}" hint-placeholder-val="{{ true }}">
+              <span style="position:absolute; top:0; right:0; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:0.6rem; padding:0.3rem 0.55rem">Estrela da casa</span>
+            </sc-if>
+            <div style="position:relative; width:100%; flex:1; min-height:0; overflow:hidden; border-radius:2px; background:rgba(10,10,10,0.6)">
+              <image-slot id="{{ item.slotId }}" src="{{ item.img }}" shape="rect" fit="cover" placeholder="{{ item.name }}"></image-slot>
+            </div>
+            <h3 style="margin:0; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.03em; font-size:clamp(1.15rem,4vw,1.35rem); line-height:1.1">{{ item.name }}</h3>
+            <p style="margin:0; font-size:0.82rem; line-height:1.5; color:rgba(245,240,232,0.6); text-wrap:pretty; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden">{{ item.desc }}</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; padding-top:0.35rem; border-top:1px dashed rgba(245,240,232,0.18)">
+              <sc-if value="{{ item.p }}" hint-placeholder-val="{{ true }}">
+                
+              </sc-if>
+              <sc-if value="{{ item.g }}" hint-placeholder-val="{{ true }}">
+                
+              </sc-if>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:center; gap:clamp(0.75rem,3vw,1.5rem); flex-wrap:wrap">
+        <button type="button" onClick="{{ stackPrev }}" aria-label="Prato anterior" style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid rgba(245,240,232,0.25); border-radius:2px; cursor:pointer; color:rgba(245,240,232,0.7); font-size:1.35rem; line-height:1; padding:0 0 3px; transition:border-color .25s ease, color .25s ease, background .25s ease" style-hover="border-color:#E01E1E; color:#F5F0E8; background:rgba(224,30,30,0.15)">‹</button>
+        <div style="display:flex; align-items:center; gap:0.45rem">
+          <sc-for list="{{ stackDots }}" as="d" hint-placeholder-count="5">
+            <button type="button" onClick="{{ d.go }}" aria-label="Ir para o prato" style="width:{{ d.w }}; height:5px; padding:0; border:none; cursor:pointer; border-radius:3px; background:{{ d.bg }}; transition:background .3s ease, width .3s ease"></button>
+          </sc-for>
+        </div>
+        <button type="button" onClick="{{ stackNext }}" aria-label="Próximo prato" style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid rgba(245,240,232,0.25); border-radius:2px; cursor:pointer; color:rgba(245,240,232,0.7); font-size:1.35rem; line-height:1; padding:0 0 3px; transition:border-color .25s ease, color .25s ease, background .25s ease" style-hover="border-color:#E01E1E; color:#F5F0E8; background:rgba(224,30,30,0.15)">›</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; align-items:center; gap:0.75rem">
+        <a href="Cardapio.dc.html" style="position:relative; overflow:hidden; min-height:68px; display:flex; align-items:center; justify-content:center; gap:0.7rem; padding:0 clamp(1.75rem,6vw,3rem); background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(1rem,3vw,1.25rem); border-radius:100px; animation:ctaBeat 1.8s ease-in-out infinite; transition:background .3s ease, color .3s ease" style-hover="background:#F5F0E8; color:#0A0A0A" style-before="content:''; position:absolute; top:0; left:0; width:38%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation:sweep 2.6s ease-in-out infinite; pointer-events:none">Ver cardápio e pedir</a>
+        <p style="margin:0; text-align:center; font-size:0.8rem; color:rgba(245,240,232,0.45)">Arraste, clique nos cards ou use as setas · Preços sujeitos a alteração</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="delivery" data-screen-label="Delivery" style="scroll-margin-top:80px; position:relative; overflow:hidden; padding:clamp(3.5rem,10vw,7rem) 1.25rem; background:#E01E1E; color:#F5F0E8">
+    <div aria-hidden="true" style="position:absolute; left:50%; top:-0.5em; transform:translateX(-50%); font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; font-size:clamp(6rem,22vw,17rem); line-height:1; color:transparent; -webkit-text-stroke:2px rgba(245,240,232,0.14); white-space:nowrap; pointer-events:none; user-select:none">Delivery</div>
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:repeating-linear-gradient(135deg, rgba(10,10,10,0.06) 0 2px, transparent 2px 14px); pointer-events:none"></div>
+    <div data-reveal="" style="position:relative; max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(2rem,5vw,3.5rem); align-items:center">
+      <div style="display:flex; flex-direction:column; gap:clamp(1.1rem,3vw,1.6rem)">
+        
+        
+        <h2 style="margin:0; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; line-height:0.9; font-size:clamp(2.6rem,9vw,5rem); text-shadow:0 4px 30px rgba(10,10,10,0.35)">Pediu no zap,<br><span style="color:#0A0A0A">chegou quentinho</span></h2><p style="margin:0; max-width:30rem; font-size:clamp(1rem,2.8vw,1.2rem); line-height:1.65; color:rgba(245,240,232,0.95); text-wrap:pretty">Manda a mensagem com o pedido e a gente confirma o tempo de entrega na hora. Atendemos Belém e região durante o almoço e o jantar.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem; padding-top:0.25rem">
+          <div style="flex:1 1 10rem; display:flex; flex-direction:column; gap:0.3rem; border-left:3px solid #0A0A0A; padding-left:0.85rem">
+            <span style="font-family:'Oswald',sans-serif; font-weight:700; font-size:1.5rem; line-height:1; color:#0A0A0A">01</span>
+            <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem">Chama no zap</span>
+            <span style="font-size:0.8rem; color:rgba(245,240,232,0.8)">Manda o pedido e o endereço</span>
+          </div>
+          <div style="flex:1 1 10rem; display:flex; flex-direction:column; gap:0.3rem; border-left:3px solid #0A0A0A; padding-left:0.85rem">
+            <span style="font-family:'Oswald',sans-serif; font-weight:700; font-size:1.5rem; line-height:1; color:#0A0A0A">02</span>
+            <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem">Confirmamos na hora</span>
+            <span style="font-size:0.8rem; color:rgba(245,240,232,0.8)">Valor e tempo de entrega</span>
+          </div>
+          <div style="flex:1 1 10rem; display:flex; flex-direction:column; gap:0.3rem; border-left:3px solid #0A0A0A; padding-left:0.85rem">
+            <span style="font-family:'Oswald',sans-serif; font-weight:700; font-size:1.5rem; line-height:1; color:#0A0A0A">03</span>
+            <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem">Chegou quentinho</span>
+            <span style="font-size:0.8rem; color:rgba(245,240,232,0.8)">Direto da panela pra sua mesa</span>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative; display:flex; flex-direction:column; gap:1rem; background:#0A0A0A; padding:clamp(1.75rem,5vw,2.75rem); border-radius:3px; box-shadow:0 40px 90px -30px rgba(10,10,10,0.85); clip-path:polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%)">
+        <div style="position:absolute; top:0; left:0; width:100%; height:3px; background:linear-gradient(90deg, #E01E1E, transparent 70%)"></div>
+        <span style="display:flex; align-items:center; gap:0.6rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.2em; font-size:0.75rem; color:rgba(245,240,232,0.6)"><span style="width:0.55rem; height:0.55rem; background:#25D366; border-radius:50%; display:block; animation:pulseRing 2.4s ease-out infinite"></span>Pedidos pelo WhatsApp</span>
+        <a href="{{ waLink }}" target="_blank" rel="noopener" style="font-family:'Oswald',sans-serif; font-weight:700; font-size:clamp(2rem,8vw,3.4rem); line-height:1; color:#F5F0E8; letter-spacing:-0.01em; transition:color .25s ease" style-hover="color:#E01E1E">(91) 98337-0031</a>
+        <span style="font-size:0.85rem; color:rgba(245,240,232,0.55)">Resposta rápida no horário de funcionamento</span>
+        <a href="{{ waLink }}" target="_blank" rel="noopener" style="position:relative; overflow:hidden; margin-top:0.35rem; min-height:60px; display:flex; align-items:center; justify-content:center; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:clamp(0.95rem,2.6vw,1.05rem); border-radius:2px; padding:0 1.25rem; box-shadow:0 14px 34px -12px rgba(224,30,30,0.9); transition:transform .35s cubic-bezier(.22,1,.36,1), background .3s ease, color .3s ease" style-hover="transform:translateY(-3px); background:#F5F0E8; color:#0A0A0A" style-before="content:''; position:absolute; top:0; left:0; width:38%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); animation:sweep 3.8s ease-in-out infinite; pointer-events:none">Abrir conversa agora</a>
+        <div style="display:flex; gap:1.25rem; flex-wrap:wrap; padding-top:0.5rem; border-top:1px dashed rgba(245,240,232,0.18)">
+          <span style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,240,232,0.55)">Almoço · Seg a Sáb</span>
+          <span style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,240,232,0.55)">Jantar · Qui a Dom</span>
+          <span style="font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:#E01E1E">Toda Belém - PA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="local" data-screen-label="Localização" style="scroll-margin-top:80px; padding:clamp(3rem,9vw,6rem) 1.25rem">
+    <div data-reveal="" style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(1.5rem,5vw,3rem); align-items:center">
+      <div style="display:flex; flex-direction:column; gap:1.1rem">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em; font-size:0.72rem; color:#E01E1E">Localização</span>
+        <h2 style="margin:0; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; line-height:0.95; font-size:clamp(2rem,7vw,3.5rem)">Venha comer aqui</h2>
+        <address style="font-style:normal; font-size:clamp(1rem,3vw,1.25rem); line-height:1.7; color:rgba(245,240,232,0.8)">
+          Passagem São João, Alameda Um<br>
+          Belém — PA<br>
+          CEP 66643-690
+        </address>
+        <a href="{{ mapsLink }}" target="_blank" rel="noopener" style="align-self:flex-start; min-height:52px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(245,240,232,0.4); color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:0.9rem; padding:0 1.5rem; border-radius:2px" style-hover="background:rgba(245,240,232,0.08); border-color:#F5F0E8; color:#F5F0E8">Abrir no mapa</a>
+      </div>
+      <div style="position:relative; min-height:clamp(14rem,48vw,22rem); border:1px solid rgba(245,240,232,0.16); border-radius:3px; overflow:hidden; background:#141312; box-shadow:0 30px 70px -40px rgba(0,0,0,0.95)">
+        <iframe title="Mapa — Bistrô Porções" src="https://www.google.com/maps?q=-1.367194769239396,-48.45927251990599&amp;z=17&amp;hl=pt-BR&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%; height:100%; min-height:clamp(14rem,48vw,22rem); border:0; display:block"></iframe>
+        <span style="position:absolute; top:0; left:0; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.16em; font-size:0.62rem; padding:0.35rem 0.7rem; pointer-events:none">Estamos aqui</span>
+      </div>
+    </div>
+  </section>
+
+  <footer data-screen-label="Footer" style="border-top:1px solid rgba(245,240,232,0.15); padding:clamp(2.5rem,7vw,4rem) 1.25rem clamp(6rem,18vw,4rem)">
+    <div style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:clamp(1.75rem,5vw,3rem)">
+      <div style="display:flex; flex-direction:column; gap:0.75rem">
+        
+        <p style="margin:0; font-size:0.9rem; line-height:1.6; color:rgba(245,240,232,0.6)">Desde 2019 em Belém — Pará.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.6rem">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.18em; font-size:0.72rem; color:rgba(245,240,232,0.45)">Contato</span>
+        <a href="{{ waLink }}" target="_blank" rel="noopener" style="font-size:0.95rem; color:#F5F0E8" style-hover="color:#E01E1E">WhatsApp (91) 98337-0031</a>
+        <a href="https://instagram.com/bistroporcoes" target="_blank" rel="noopener" style="font-size:0.95rem; color:#F5F0E8" style-hover="color:#E01E1E">Instagram @bistroporcoes</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.6rem">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.18em; font-size:0.72rem; color:rgba(245,240,232,0.45)">Horários</span>
+        <span style="font-size:0.95rem; color:rgba(245,240,232,0.8)">Almoço · Seg a Sáb</span>
+        <span style="font-size:0.95rem; color:rgba(245,240,232,0.8)">Jantar · Qui a Dom</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.6rem">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.18em; font-size:0.72rem; color:rgba(245,240,232,0.45)">Endereço</span>
+        <span style="font-size:0.95rem; line-height:1.6; color:rgba(245,240,232,0.8)">Passagem São João, Alameda Um<br>Belém — PA · 66643-690</span>
+      </div>
+    </div>
+    <div style="max-width:1240px; margin:clamp(2rem,6vw,3rem) auto 0; padding-top:1.25rem; border-top:1px solid rgba(245,240,232,0.1); display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; justify-content:space-between; font-size:0.78rem; color:rgba(245,240,232,0.4)">
+      <span>© 2026 Bistrô Porções · Belém, Pará</span>
+      <span>Feito com tucupi, jambu e capricho.</span>
+    </div>
+  </footer>
+
+  <div style="position:fixed; right:clamp(0.85rem,3vw,1.5rem); bottom:clamp(0.85rem,3vw,1.5rem); z-index:80; display:flex; flex-direction:column; align-items:flex-end; gap:0.6rem">
+    <a href="Cardapio.dc.html" aria-label="Acessar cardápio e fazer meu pedido" style="position:relative; overflow:hidden; min-height:60px; display:flex; align-items:center; justify-content:center; padding:0 clamp(1.1rem,4vw,1.6rem); background:#E01E1E; background-image:repeating-linear-gradient(135deg, rgba(10,10,10,0.07) 0 2px, transparent 2px 14px); color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; font-size:clamp(0.85rem,2.6vw,0.95rem); border-radius:100px; box-shadow:0 16px 40px -14px rgba(224,30,30,0.9); animation:ctaShake 7s ease-in-out infinite; transition:background-color .3s ease, color .3s ease" style-hover="background-color:#F5F0E8; color:#0A0A0A">Cardápio · Fazer pedido</a>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;5591983370031&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;},&quot;defaultTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;porcoes&quot;,&quot;doces&quot;,&quot;bebidas&quot;],&quot;default&quot;:&quot;porcoes&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Cardápio&quot;},&quot;showFloatingCta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contato&quot;}}">
+const DATA = {
+  porcoes: [
+    { slot: 'dish-porcoes-2', img: 'public/manicoba.webp', name: 'Maniçoba', desc: 'Sete dias de cozimento da maniva com carnes e defumados. Feijoada paraense.', p: 'R$ 11,99', g: 'R$ 23,99', star: true },
+    { slot: 'dish-porcoes-1', img: 'public/vatapa.webp', name: 'Vatapá', desc: 'Cremoso, com leite de coco, castanha e camarão. Serve puro ou com arroz.', p: 'R$ 5,99', g: 'R$ 11,99', star: true },
+    { slot: 'dish-porcoes-7', img: 'public/lasanha.webp', name: 'Lasanha', desc: 'Camadas de molho caseiro e queijo, gratinada na hora.', g: 'R$ 14,99' },
+    { slot: 'dish-porcoes-0', img: 'public/tacaca.webp', name: 'Tacacá', desc: 'Tucupi fervendo, goma, jambu e camarão seco. O clássico da tarde paraense.', p: 'R$ 5,99', g: 'R$ 11,99', star: true },
+    { slot: 'dish-porcoes-4', img: 'public/arroz-galinha.webp', name: 'Arroz com Galinha', desc: 'Arroz soltinho, galinha desfiada e cheiro-verde da feira.', p: 'R$ 5,99', g: 'R$ 11,99' },
+    { slot: 'dish-porcoes-5', img: 'public/arroz-charque.webp', name: 'Arroz com Charque', desc: 'Charque dessalgada, refogada na cebola e misturada no arroz.', p: 'R$ 5,99', g: 'R$ 11,99' },
+    { slot: 'dish-porcoes-6', img: 'public/arroz-paraense.webp', name: 'Arroz Paraense', desc: 'Arroz com jambu e tucupi — o regional que todo mundo repete.', g: 'R$ 14,99' },
+    { slot: 'dish-porcoes-3', img: 'public/caruru.webp', name: 'Caruru', desc: 'Quiabo, camarão seco e dendê no ponto certo de tempero.', p: 'R$ 5,99', g: 'R$ 11,99' }
+  ],
+  doces: [
+    { slot: 'dish-doces-0', img: 'public/bolo-cupu.webp', name: 'Bolo de Cupuaçu', desc: 'Massa fofa com recheio da fruta amazônica. Doce na medida.', g: 'R$ 14,99', star: true },
+    { slot: 'dish-doces-1', img: 'public/bolo.webp', name: 'Bolo de Chocolate', desc: 'Chocolate denso com cobertura brilhante. Fatia generosa.', g: 'R$ 11,99' },
+    { slot: 'dish-doces-2', img: 'public/torta-salgaa.webp', name: 'Torta Salgada', desc: 'Recheio cremoso e massa amanteigada — boa pro lanche da tarde.', g: 'R$ 9,99' }
+  ],
+  bebidas: [
+    { slot: 'dish-bebidas-0', img: 'public/coca-ks.webp', name: 'Coca-Cola KS', desc: 'Garrafa de vidro 290ml, sempre gelada.', g: 'R$ 5,50' },
+    { slot: 'dish-bebidas-1', img: 'public/coca-1l.webp', name: 'Coca-Cola 1L', desc: 'Para acompanhar a porção P.', g: 'R$ 10,00' },
+    { slot: 'dish-bebidas-2', img: 'public/coca-2l.webp', name: 'Coca-Cola 2L', desc: 'Tamanho família, pra dividir a maniçoba.', g: 'R$ 13,00' },
+    { slot: 'dish-bebidas-3', img: 'public/refri-lata.webp', name: 'Refrigerante Lata', desc: 'Sabores variados, 350ml.', g: 'R$ 6,00' },
+    { slot: 'dish-bebidas-4', img: 'public/suco.webp', name: 'Suco 300ml', desc: 'Sabores da estação, bem gelado.', g: 'R$ 6,00' },
+    { slot: 'dish-bebidas-5', img: 'public/agua.webp', name: 'Água 500ml', desc: 'Com ou sem gás.', g: 'R$ 3,00' }
+  ]
+};
+
+const FEATURED = [
+  { name: 'Tacacá', desc: 'Tucupi fervendo, goma, jambu e camarão seco — o clássico da tarde paraense.', price: 'P R$ 5,99 · G R$ 11,99' },
+  { name: 'Vatapá', desc: 'Cremoso, com leite de coco, castanha e camarão.', price: 'P R$ 5,99 · G R$ 11,99' },
+  { name: 'Maniçoba', desc: 'Sete dias de cozimento da maniva com carnes e defumados.', price: 'P R$ 11,99 · G R$ 23,99' },
+  { name: 'Arroz Paraense', desc: 'Arroz com jambu e tucupi — o regional que todo mundo repete.', price: 'G R$ 14,99' },
+  { name: 'Bolo de Cupuaçu', desc: 'Massa fofa com recheio da fruta amazônica.', price: 'R$ 14,99' }
+];
+
+class Component extends DCLogic {
+  state = { tab: null, menuOpen: false, slide: 0, active: 0, w: typeof window !== 'undefined' ? window.innerWidth : 1280 };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._revealTimer = setTimeout(() => this.setupReveal(), 80);
+    this._onScroll = () => {
+      if (this._scrollRaf) return;
+      this._scrollRaf = requestAnimationFrame(() => {
+        this._scrollRaf = null;
+        this.updateSobre();
+        const stage = document.querySelector('[data-stack-stage]');
+        if (!stage) return;
+        const r = stage.getBoundingClientRect();
+        const total = this._stackTotal || 1;
+        if (total < 2) return;
+        const span = window.innerHeight + r.height;
+        const progress = (window.innerHeight - r.top) / span;
+        if (progress < 0 || progress > 1) return;
+        const eased = Math.min(0.999, Math.max(0, (progress - 0.14) / 0.72));
+        const target = eased * (total - 1);
+        const idx = Math.round(target);
+        if (Math.abs(target - idx) > 0.34) return;
+        if (idx !== this.state.active) this.setState({ active: idx });
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+    setTimeout(() => this.updateSobre(), 60);
+    this._carTimer = setInterval(() => {
+      if (!this._carHover) this.setState(s => ({ slide: (s.slide + 1) % FEATURED.length }));
+    }, 4200);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+    clearTimeout(this._revealTimer);
+    clearTimeout(this._failSafe);
+    clearInterval(this._carTimer);
+    if (this._io) this._io.disconnect();
+    this.showAllReveals();
+  }
+
+  updateSobre() {
+    const stage = document.querySelector('[data-sobre-stage]');
+    if (!stage) return;
+    const card = stage.querySelector('[data-sobre-card]');
+    const header = stage.querySelector('[data-sobre-header]');
+    if (!card || !header) return;
+    const r = stage.getBoundingClientRect();
+    const raw = (window.innerHeight - r.top) / (window.innerHeight * 0.62);
+    const p = Math.min(1, Math.max(0, raw));
+    const e = 1 - Math.pow(1 - p, 3);
+    const isMobile = window.innerWidth <= 768;
+    const rotate = 42 - 42 * e;
+    const scale = isMobile ? 0.9 + 0.1 * e : 1.06 - 0.06 * e;
+    const lift = 60 - 60 * e;
+    card.style.transform = 'translateY(' + lift.toFixed(1) + 'px) rotateX(' + rotate.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
+    card.style.opacity = (0.35 + 0.65 * Math.min(1, e * 1.6)).toFixed(2);
+    header.style.transform = 'translateY(' + (-34 * e).toFixed(1) + 'px)';
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.slide !== this.state.slide) {
+      const p = document.querySelector('[data-car-progress]');
+      if (p) {
+        p.style.animation = 'none';
+        void p.offsetWidth;
+        p.style.animation = 'progressGrow 4.2s linear forwards';
+        p.style.animationPlayState = this._carHover ? 'paused' : 'running';
+      }
+    }
+
+  }
+
+  showAllReveals() {
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
+  setupReveal() {
+    const targets = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    if (!targets.length) return;
+    clearTimeout(this._failSafe);
+    this._failSafe = setTimeout(() => this.showAllReveals(), 2500);
+    if (typeof IntersectionObserver === 'undefined') { this.showAllReveals(); return; }
+    this._io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.style.transitionDelay = (el.getAttribute('data-reveal-delay') || '0s');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        this._io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    targets.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        return;
+      }
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1)';
+      this._io.observe(el);
+    });
+  }
+
+  tabStyle(key, active) {
+    return active
+      ? { border: '#E01E1E', bg: '#E01E1E', fg: '#F5F0E8' }
+      : { border: 'rgba(245,240,232,0.25)', bg: 'rgba(245,240,232,0.06)', fg: 'rgba(245,240,232,0.85)' };
+  }
+
+  renderVals() {
+    const tab = this.state.tab || this.props.defaultTab || 'porcoes';
+    const isMobile = this.state.w < 768;
+    const phone = this.props.whatsappNumber || '5591983370031';
+    const showFloat = this.props.showFloatingCta !== false;
+    const isPorcoes = tab === 'porcoes';
+    const source = DATA.porcoes.concat(DATA.doces);
+    const list = source.map((it, i) => Object.assign({}, it, {
+      star: it.star ? true : '',
+      p: it.p || '',
+      g: it.g || '',
+      gLabel: it.p ? 'G' : (isPorcoes ? 'G' : 'UN'),
+      delay: (i * 0.06).toFixed(2) + 's',
+      slotId: it.slot || ('dish-' + tab + '-' + i)
+    }));
+    const total = list.length;
+    this._stackTotal = total;
+    const active = Math.min(this.state.active, total - 1);
+    const cardW = Math.round(Math.min(isMobile ? this.state.w * 0.74 : 340, 340));
+    const cardH = Math.round(cardW * 1.42);
+    const spacing = Math.round(cardW * (isMobile ? 0.34 : 0.55));
+    const maxOff = isMobile ? 2 : 3;
+    const stack = list.map((it, i) => {
+      let off = i - active;
+      const alt = off > 0 ? off - total : off + total;
+      if (Math.abs(alt) < Math.abs(off)) off = alt;
+      const abs = Math.abs(off);
+      const on = off === 0;
+      const scale = on ? 1.02 : 0.9 - Math.min(abs, maxOff) * 0.03;
+      return Object.assign({}, it, {
+        go: () => this.setState({ active: i }),
+        z: 100 - abs,
+        opacity: abs > maxOff ? 0 : (on ? 1 : 0.9 - abs * 0.16),
+        vis: abs > maxOff ? 'hidden' : 'visible',
+        marginLeft: Math.round(-cardW / 2) + 'px',
+        transform: 'translateX(' + (off * spacing) + 'px) translateY(' + (abs * 12 + (on ? 0 : 26)) + 'px) translateZ(' + (-abs * 130) + 'px) rotateZ(' + (off * 7) + 'deg) rotateX(' + (on ? 0 : 9) + 'deg) scale(' + scale + ')',
+        borderColor: on ? '#E01E1E' : 'rgba(245,240,232,0.14)',
+        shadow: on ? '0 40px 80px -30px rgba(224,30,30,0.75), 0 0 0 1px rgba(224,30,30,0.35)' : '0 26px 60px -34px rgba(0,0,0,0.95)'
+      });
+    });
+    const a = this.tabStyle('porcoes', tab === 'porcoes');
+    const b = this.tabStyle('doces', tab === 'doces');
+    const c = this.tabStyle('bebidas', tab === 'bebidas');
+
+    return {
+      items: stack,
+      cardW: cardW + 'px',
+      cardH: cardH + 'px',
+      stageH: (cardH + 70) + 'px',
+      stackDots: list.map((it, i) => ({
+        go: () => this.setState({ active: i }),
+        w: i === active ? '26px' : '10px',
+        bg: i === active ? '#E01E1E' : 'rgba(245,240,232,0.25)'
+      })),
+      stackPrev: () => this.setState(s => ({ active: (s.active - 1 + total) % total })),
+      stackNext: () => this.setState(s => ({ active: (s.active + 1) % total })),
+      dragStart: e => { this._dragX = e.clientX; },
+      dragEnd: e => {
+        if (this._dragX == null) return;
+        const dx = e.clientX - this._dragX;
+        this._dragX = null;
+        if (Math.abs(dx) < 40) return;
+        this.setState(s => ({ active: (s.active + (dx < 0 ? 1 : total - 1)) % total }));
+      },
+      waLink: 'https://wa.me/' + phone + '?text=' + encodeURIComponent('Olá! Quero fazer um pedido no Bistrô Porções.'),
+      mapsLink: 'https://maps.app.goo.gl/LWkwnzx66jPN95hb6',
+      navDisplay: isMobile ? 'none' : 'flex',
+      burgerDisplay: isMobile ? 'flex' : 'none',
+      drawerDisplay: isMobile && this.state.menuOpen ? 'flex' : 'none',
+      floatDisplay: showFloat && isMobile ? 'inline-flex' : 'none',
+      featured: FEATURED,
+      carX: (-this.state.slide * 100) + '%',
+      carIdx: ('0' + (this.state.slide + 1)).slice(-2),
+      carTotal: ('0' + FEATURED.length).slice(-2),
+      carLabelDisplay: this.state.w < 900 ? 'none' : 'flex',
+      carDescDisplay: isMobile ? 'none' : 'inline-block',
+      carPrev: () => this.setState(s => ({ slide: (s.slide - 1 + FEATURED.length) % FEATURED.length })),
+      carNext: () => this.setState(s => ({ slide: (s.slide + 1) % FEATURED.length })),
+      carPause: () => {
+        this._carHover = true;
+        const p = document.querySelector('[data-car-progress]');
+        if (p) p.style.animationPlayState = 'paused';
+      },
+      carResume: () => {
+        this._carHover = false;
+        const p = document.querySelector('[data-car-progress]');
+        if (p) p.style.animationPlayState = 'running';
+      },
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      pickPorcoes: () => this.setState({ tab: 'porcoes', active: 0 }),
+      pickDoces: () => this.setState({ tab: 'doces', active: 0 }),
+      pickBebidas: () => this.setState({ tab: 'bebidas', active: 0 }),
+      tabBorderA: a.border, tabBgA: a.bg, tabFgA: a.fg,
+      tabBorderB: b.border, tabBgB: b.bg, tabFgB: b.fg,
+      tabBorderC: c.border, tabBgC: c.bg, tabFgC: c.fg
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cardápio — Bistrô Porções</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background-color: #0A0A0A;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.30'/%3E%3C/svg%3E");
+    color: #F5F0E8;
+    font-family: 'Archivo', system-ui, sans-serif;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: #E01E1E; text-decoration: none; }
+  a:hover { color: #F5F0E8; }
+  input, textarea { font-family: 'Archivo', system-ui, sans-serif; }
+  ::selection { background: #E01E1E; color: #F5F0E8; }
+  @keyframes sweep { from { transform: translateX(-120%) skewX(-18deg); } to { transform: translateX(320%) skewX(-18deg); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+</helmet>
+
+<div>
+  <header style="position:fixed; top:0; left:0; right:0; z-index:90; background:#E01E1E">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:repeating-linear-gradient(135deg, rgba(10,10,10,0.07) 0 2px, transparent 2px 14px); pointer-events:none"></div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:0.7rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem">
+      <a href="Bistro Porcoes.dc.html" style="display:flex; align-items:center; gap:0.65rem; color:#F5F0E8">
+        <span style="width:1.15rem; height:1.15rem; background:#0A0A0A; transform:rotate(45deg); display:flex; align-items:center; justify-content:center; flex:none"><span style="width:0.45rem; height:0.45rem; background:#1E2A8C; display:block"></span></span>
+        <span style="display:flex; flex-direction:column; line-height:1">
+          <span style="font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; font-size:clamp(0.95rem,3.2vw,1.15rem)">Bistrô Porções</span>
+          <span style="font-family:'Oswald',sans-serif; letter-spacing:0.24em; text-transform:uppercase; font-size:0.55rem; color:#0A0A0A; margin-top:0.2rem; font-weight:600">Cardápio · Pedido online</span>
+        </span>
+      </a>
+      <div style="display:flex; align-items:center; gap:0.5rem">
+        <a href="Bistro Porcoes.dc.html" style="display:{{ backDisplay }}; align-items:center; padding:0.65rem 0.9rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:0.85rem; color:#F5F0E8; border-bottom:2px solid transparent; transition:border-color .25s ease, background .25s ease" style-hover="border-color:#0A0A0A; background:rgba(10,10,10,0.18); color:#F5F0E8">Início</a>
+        <button type="button" onClick="{{ openCart }}" style="position:relative; display:flex; align-items:center; gap:0.55rem; min-height:44px; padding:0 1.1rem; border:none; cursor:pointer; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem; color:#F5F0E8; background:#0A0A0A; clip-path:polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); transition:background .3s ease, color .3s ease" style-hover="background:#F5F0E8; color:#0A0A0A">
+          Meu pedido
+          <span style="display:flex; align-items:center; justify-content:center; min-width:1.4rem; height:1.4rem; padding:0 0.35rem; border-radius:100px; background:#E01E1E; color:#F5F0E8; font-size:0.75rem; font-family:'Archivo',sans-serif; font-weight:700">{{ cartCount }}</span>
+        </button>
+      </div>
+    </div>
+    <div style="height:3px; width:100%; background:linear-gradient(90deg, #0A0A0A, rgba(10,10,10,0.25) 45%, rgba(10,10,10,0.25) 55%, #0A0A0A)"></div>
+  </header>
+  <div style="height:66px"></div>
+
+  <section style="position:relative; overflow:hidden; padding:clamp(2.5rem,7vw,4.5rem) 1.25rem clamp(1.5rem,4vw,2.5rem)">
+    <div aria-hidden="true" style="position:absolute; left:50%; top:0.1em; transform:translateX(-50%); font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; font-size:clamp(5rem,20vw,15rem); line-height:1; color:transparent; -webkit-text-stroke:2px rgba(245,240,232,0.07); white-space:nowrap; pointer-events:none; user-select:none">Cardápio</div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.9rem">
+      <span style="display:flex; align-items:center; gap:0.6rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.24em; font-size:0.72rem; color:#E01E1E"><span style="width:0.45rem; height:0.45rem; background:#1E2A8C; transform:rotate(45deg); display:block"></span>Peça online</span>
+      <h1 style="margin:0; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; line-height:0.92; font-size:clamp(2.2rem,8vw,4.5rem)">Monte seu pedido</h1>
+      <p style="margin:0; max-width:34rem; font-size:clamp(0.95rem,2.6vw,1.08rem); line-height:1.65; color:rgba(245,240,232,0.7); text-wrap:pretty">Escolha o tamanho, adicione ao carrinho e envie tudo pronto pelo WhatsApp. A gente confirma valor e tempo de entrega na hora.</p>
+    </div>
+  </section>
+
+  <div style="position:sticky; top:66px; z-index:45; padding:0.75rem 1.25rem; background:rgba(10,10,10,0.94); backdrop-filter:blur(10px); border-top:1px solid rgba(224,30,30,0.4); border-bottom:1px solid rgba(224,30,30,0.4); box-shadow:0 18px 40px -24px rgba(0,0,0,0.9)">
+    <div style="position:absolute; top:-1px; left:0; width:100%; height:2px; background:linear-gradient(90deg, transparent, #E01E1E 30%, #E01E1E 70%, transparent)"></div>
+    <div style="max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:clamp(0.5rem,2vw,0.75rem); flex-wrap:wrap">
+      <span style="display:{{ tabLabelDisplay }}; align-items:center; gap:0.55rem; background:#0A0A0A; border:1px solid rgba(245,240,232,0.2); color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.22em; font-size:0.7rem; padding:0 1.6rem 0 1rem; min-height:48px; clip-path:polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)"><span style="width:0.42rem; height:0.42rem; background:#1E2A8C; transform:rotate(45deg); display:block"></span>Cardápio</span>
+      <button type="button" onClick="{{ pickPorcoes }}" style="min-height:48px; padding:0 clamp(1.1rem,4vw,2rem); font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(0.8rem,2.6vw,0.9rem); cursor:pointer; clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1); border:1px solid {{ tabBorderA }}; background:{{ tabBgA }}; color:{{ tabFgA }}" style-hover="transform:translateY(-2px)">Porções</button>
+      <button type="button" onClick="{{ pickDoces }}" style="min-height:48px; padding:0 clamp(1.1rem,4vw,2rem); font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(0.8rem,2.6vw,0.9rem); cursor:pointer; clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1); border:1px solid {{ tabBorderB }}; background:{{ tabBgB }}; color:{{ tabFgB }}" style-hover="transform:translateY(-2px)">Doces</button>
+      <button type="button" onClick="{{ pickBebidas }}" style="min-height:48px; padding:0 clamp(1.1rem,4vw,2rem); font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; font-size:clamp(0.8rem,2.6vw,0.9rem); cursor:pointer; clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1); border:1px solid {{ tabBorderC }}; background:{{ tabBgC }}; color:{{ tabFgC }}" style-hover="transform:translateY(-2px)">Bebidas</button>
+    </div>
+  </div>
+
+  <section style="padding:clamp(2rem,6vw,3.5rem) 1.25rem clamp(7rem,16vw,9rem)">
+    <div style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr)); gap:clamp(0.9rem,2.5vw,1.35rem)">
+      <sc-for list="{{ dishes }}" as="d" hint-placeholder-count="6">
+        <article style="position:relative; overflow:hidden; display:flex; flex-direction:column; gap:0.7rem; padding:clamp(1rem,3vw,1.25rem); background:#121110; border:1px solid {{ d.border }}; border-radius:3px; box-shadow:0 24px 50px -34px rgba(0,0,0,0.95); opacity:0; animation:fadeUp .5s cubic-bezier(.22,1,.36,1) forwards; animation-delay:{{ d.delay }}; transition:border-color .3s ease, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease" style-hover="transform:translateY(-4px); border-color:#E01E1E; box-shadow:0 26px 55px -26px rgba(224,30,30,0.7)">
+          <sc-if value="{{ d.star }}" hint-placeholder-val="{{ true }}">
+            <span style="position:absolute; top:0; right:0; z-index:3; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:0.6rem; padding:0.3rem 0.55rem">Estrela da casa</span>
+          </sc-if>
+          <div style="position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:2px; background:rgba(10,10,10,0.6)">
+            <image-slot id="{{ d.slot }}" src="{{ d.img }}" shape="rect" fit="cover" placeholder="{{ d.name }}"></image-slot>
+          </div>
+          <h2 style="margin:0; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.03em; font-size:clamp(1.1rem,3.6vw,1.3rem); line-height:1.1">{{ d.name }}</h2>
+          <p style="margin:0; font-size:0.82rem; line-height:1.5; color:rgba(245,240,232,0.6); text-wrap:pretty; flex:1">{{ d.desc }}</p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem">
+            <sc-for list="{{ d.sizes }}" as="s" hint-placeholder-count="2">
+              <button type="button" onClick="{{ s.pick }}" style="flex:1 1 6.5rem; min-height:48px; display:flex; align-items:center; justify-content:center; gap:0.45rem; cursor:pointer; border-radius:2px; padding:0 0.6rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-size:0.9rem; transition:background .25s ease, border-color .25s ease, color .25s ease; border:1px solid {{ s.border }}; background:{{ s.bg }}; color:{{ s.fg }}">
+                <span style="font-size:0.7rem; letter-spacing:0.16em; opacity:0.75">{{ s.label }}</span>{{ s.price }}
+              </button>
+            </sc-for>
+          </div>
+          <button type="button" onClick="{{ d.add }}" style="min-height:48px; display:flex; align-items:center; justify-content:center; gap:0.5rem; cursor:pointer; border:none; border-radius:2px; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:0.88rem; transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-2px); background:#F5F0E8; color:#0A0A0A">{{ d.addLabel }}</button>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="display:{{ barDisplay }}; position:fixed; left:0; right:0; bottom:0; z-index:70; background:#E01E1E; box-shadow:0 -20px 50px -25px rgba(0,0,0,0.95)">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:repeating-linear-gradient(135deg, rgba(10,10,10,0.08) 0 2px, transparent 2px 14px); pointer-events:none"></div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:0.7rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem">
+      <div style="display:flex; flex-direction:column; line-height:1.2">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.16em; font-size:0.7rem; color:#0A0A0A; font-weight:600">{{ cartCount }} item(ns) no pedido</span>
+        <span style="font-family:'Oswald',sans-serif; font-weight:700; font-size:clamp(1.2rem,4vw,1.6rem); color:#F5F0E8">{{ cartTotal }}</span>
+      </div>
+      <button type="button" onClick="{{ openCart }}" style="min-height:52px; padding:0 clamp(1rem,4vw,1.75rem); border:none; cursor:pointer; background:#0A0A0A; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:clamp(0.85rem,2.6vw,0.95rem); clip-path:polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); transition:background .3s ease, color .3s ease" style-hover="background:#F5F0E8; color:#0A0A0A">Ver pedido</button>
+    </div>
+  </div>
+
+  <div onClick="{{ closeCart }}" style="position:fixed; inset:0; z-index:95; background:rgba(5,5,5,0.72); backdrop-filter:blur(3px); opacity:{{ overlayOpacity }}; visibility:{{ overlayVis }}; transition:opacity .35s ease, visibility .35s ease"></div>
+
+  <aside style="position:fixed; top:0; right:0; bottom:0; z-index:96; width:min(420px,92vw); display:flex; flex-direction:column; background:#0D0C0B; border-left:1px solid rgba(224,30,30,0.4); box-shadow:-30px 0 70px -30px rgba(0,0,0,0.95); transform:translateX({{ drawerX }}); transition:transform .45s cubic-bezier(.22,1,.36,1)">
+    <div style="flex:none; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 1.25rem; background:#E01E1E">
+      <span style="display:flex; align-items:center; gap:0.55rem; font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; font-size:0.95rem"><span style="width:0.5rem; height:0.5rem; background:#0A0A0A; transform:rotate(45deg); display:block"></span>Meu pedido</span>
+      <button type="button" onClick="{{ closeCart }}" aria-label="Fechar" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:#0A0A0A; color:#F5F0E8; border:none; cursor:pointer; font-size:1.2rem; line-height:1; transition:background .25s ease, color .25s ease" style-hover="background:#F5F0E8; color:#0A0A0A">✕</button>
+    </div>
+
+    <div style="flex:1; min-height:0; overflow-y:auto; padding:1.25rem; display:flex; flex-direction:column; gap:1rem">
+      <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.6rem; padding:2.5rem 1rem; border:1px dashed rgba(245,240,232,0.2)">
+          <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:1rem; color:rgba(245,240,232,0.8)">Carrinho vazio</span>
+          <span style="font-size:0.85rem; color:rgba(245,240,232,0.5)">Escolha um tamanho e toque em adicionar.</span>
+        </div>
+      </sc-if>
+
+      <sc-for list="{{ cartItems }}" as="c" hint-placeholder-count="2">
+        <div style="display:flex; gap:0.85rem; align-items:center; padding-bottom:0.85rem; border-bottom:1px dashed rgba(245,240,232,0.15)">
+          <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:0.25rem">
+            <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:1rem; line-height:1.1">{{ c.name }}</span>
+            <span style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,240,232,0.5)">{{ c.sizeLabel }} · {{ c.unit }}</span>
+          </div>
+          <div style="flex:none; display:flex; align-items:center; gap:0.35rem">
+            <button type="button" onClick="{{ c.dec }}" aria-label="Diminuir" style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid rgba(245,240,232,0.25); color:#F5F0E8; cursor:pointer; border-radius:2px; font-size:1rem; line-height:1; transition:border-color .25s ease, background .25s ease" style-hover="border-color:#E01E1E; background:rgba(224,30,30,0.15)">−</button>
+            <span style="min-width:1.6rem; text-align:center; font-family:'Oswald',sans-serif; font-size:1rem">{{ c.qty }}</span>
+            <button type="button" onClick="{{ c.inc }}" aria-label="Aumentar" style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:transparent; border:1px solid rgba(245,240,232,0.25); color:#F5F0E8; cursor:pointer; border-radius:2px; font-size:1rem; line-height:1; transition:border-color .25s ease, background .25s ease" style-hover="border-color:#E01E1E; background:rgba(224,30,30,0.15)">+</button>
+          </div>
+          <span style="flex:none; min-width:5rem; text-align:right; font-family:'Oswald',sans-serif; font-size:1rem; color:#E01E1E">{{ c.total }}</span>
+        </div>
+      </sc-for>
+
+      <div style="display:flex; flex-direction:column; gap:0.7rem; padding-top:0.25rem">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.18em; font-size:0.7rem; color:rgba(245,240,232,0.45)">Seus dados</span>
+        <input value="{{ nome }}" onChange="{{ setNome }}" placeholder="Seu nome" style="min-height:48px; padding:0 0.9rem; background:rgba(245,240,232,0.05); border:1px solid rgba(245,240,232,0.2); border-radius:2px; color:#F5F0E8; font-size:0.95rem" />
+        <div style="display:flex; gap:0.5rem">
+          <button type="button" onClick="{{ pickEntrega }}" style="flex:1; min-height:48px; cursor:pointer; border-radius:2px; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem; transition:background .25s ease, border-color .25s ease, color .25s ease; border:1px solid {{ modeBorderA }}; background:{{ modeBgA }}; color:{{ modeFgA }}">Entrega</button>
+          <button type="button" onClick="{{ pickRetirada }}" style="flex:1; min-height:48px; cursor:pointer; border-radius:2px; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em; font-size:0.85rem; transition:background .25s ease, border-color .25s ease, color .25s ease; border:1px solid {{ modeBorderB }}; background:{{ modeBgB }}; color:{{ modeFgB }}">Retirada</button>
+        </div>
+        <input value="{{ endereco }}" onChange="{{ setEndereco }}" placeholder="Endereço e ponto de referência" style="display:{{ addrDisplay }}; min-height:48px; padding:0 0.9rem; background:rgba(245,240,232,0.05); border:1px solid rgba(245,240,232,0.2); border-radius:2px; color:#F5F0E8; font-size:0.95rem" />
+        <textarea value="{{ obs }}" onChange="{{ setObs }}" placeholder="Observações (sem pimenta, troco para…)" rows="2" style="padding:0.7rem 0.9rem; background:rgba(245,240,232,0.05); border:1px solid rgba(245,240,232,0.2); border-radius:2px; color:#F5F0E8; font-size:0.95rem; resize:vertical"></textarea>
+      </div>
+    </div>
+
+    <div style="flex:none; padding:1.1rem 1.25rem calc(1.1rem + env(safe-area-inset-bottom)); border-top:1px solid rgba(245,240,232,0.15); background:#0A0A0A; display:flex; flex-direction:column; gap:0.8rem">
+      <div style="display:flex; align-items:baseline; justify-content:space-between">
+        <span style="font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.16em; font-size:0.8rem; color:rgba(245,240,232,0.6)">Total</span>
+        <span style="font-family:'Oswald',sans-serif; font-weight:700; font-size:clamp(1.5rem,6vw,2rem); color:#F5F0E8">{{ cartTotal }}</span>
+      </div>
+      <a href="{{ orderLink }}" target="_blank" rel="noopener" style="position:relative; overflow:hidden; min-height:58px; display:flex; align-items:center; justify-content:center; gap:0.5rem; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:1rem; border-radius:2px; opacity:{{ sendOpacity }}; pointer-events:{{ sendPointer }}; transition:background .3s ease, color .3s ease" style-hover="background:#F5F0E8; color:#0A0A0A" style-before="content:''; position:absolute; top:0; left:0; width:38%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent); animation:sweep 3.8s ease-in-out infinite; pointer-events:none"><span style="width:0.55rem; height:0.55rem; background:#25D366; border-radius:50%; display:block"></span>Enviar pelo WhatsApp</a>
+      <span style="text-align:center; font-size:0.72rem; color:rgba(245,240,232,0.4)">Confirmação de valor e tempo de entrega no WhatsApp</span>
+    </div>
+  </aside>
+
+  <footer style="border-top:1px solid rgba(245,240,232,0.15); padding:clamp(2rem,6vw,3rem) 1.25rem clamp(6rem,14vw,3rem); display:flex; flex-wrap:wrap; gap:1rem 2rem; justify-content:center; text-align:center; font-size:0.8rem; color:rgba(245,240,232,0.45)">
+    <span>Almoço · Seg a Sáb</span>
+    <span>Jantar · Qui a Dom</span>
+    <a href="https://instagram.com/bistroporcoes" target="_blank" rel="noopener">@bistroporcoes</a>
+    <span>Passagem São João, Alameda Um — Belém/PA</span>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;5591983370031&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;}}">
+const MENU = {
+  porcoes: [
+    { slot: 'dish-porcoes-1', img: 'public/vatapa.webp', name: 'Vatapá', desc: 'Cremoso, com leite de coco, castanha e camarão. Serve puro ou com arroz.', p: 5.99, g: 11.99, star: true },
+    { slot: 'dish-porcoes-0', img: 'public/tacaca.webp', name: 'Tacacá', desc: 'Tucupi fervendo, goma, jambu e camarão seco. O clássico da tarde paraense.', p: 5.99, g: 11.99, star: true },
+    { slot: 'dish-porcoes-7', img: 'public/lasanha.webp', name: 'Lasanha', desc: 'Camadas de molho caseiro e queijo, gratinada na hora.', g: 14.99 },
+    { slot: 'dish-porcoes-2', img: 'public/manicoba.webp', name: 'Maniçoba', desc: 'Sete dias de cozimento da maniva com carnes e defumados. Feijoada paraense.', p: 11.99, g: 23.99, star: true },
+    { slot: 'dish-porcoes-3', img: 'public/caruru.webp', name: 'Caruru', desc: 'Quiabo, camarão seco e dendê no ponto certo de tempero.', p: 5.99, g: 11.99 },
+    { slot: 'dish-porcoes-4', img: 'public/arroz-galinha.webp', name: 'Arroz com Galinha', desc: 'Arroz soltinho, galinha desfiada e cheiro-verde da feira.', p: 5.99, g: 11.99 },
+    { slot: 'dish-porcoes-5', img: 'public/arroz-charque.webp', name: 'Arroz com Charque', desc: 'Charque dessalgada, refogada na cebola e misturada no arroz.', p: 5.99, g: 11.99 },
+    { slot: 'dish-porcoes-6', img: 'public/arroz-paraense.webp', name: 'Arroz Paraense', desc: 'Arroz com jambu e tucupi — o regional que todo mundo repete.', g: 14.99 }
+  ],
+  doces: [
+    { slot: 'dish-doces-0', img: 'public/bolo-cupu.webp', name: 'Bolo de Cupuaçu', desc: 'Massa fofa com recheio da fruta amazônica. Doce na medida.', u: 14.99, star: true },
+    { slot: 'dish-doces-1', img: 'public/bolo.webp', name: 'Bolo de Chocolate', desc: 'Chocolate denso com cobertura brilhante. Fatia generosa.', u: 11.99 },
+    { slot: 'dish-doces-2', img: 'public/torta-salgaa.webp', name: 'Torta Salgada', desc: 'Recheio cremoso e massa amanteigada — boa pro lanche da tarde.', u: 9.99 }
+  ],
+  bebidas: [
+    { slot: 'dish-bebidas-0', img: 'public/coca-ks.webp', name: 'Coca-Cola KS', desc: 'Garrafa de vidro 290ml, sempre gelada.', u: 5.5 },
+    { slot: 'dish-bebidas-1', img: 'public/coca-1l.webp', name: 'Coca-Cola 1L', desc: 'Para acompanhar a porção P.', u: 10 },
+    { slot: 'dish-bebidas-2', img: 'public/coca-2l.webp', name: 'Coca-Cola 2L', desc: 'Tamanho família, pra dividir a maniçoba.', u: 13 },
+    { slot: 'dish-bebidas-3', img: 'public/refri-lata.webp', name: 'Refrigerante Lata', desc: 'Sabores variados, 350ml.', u: 6 },
+    { slot: 'dish-bebidas-4', img: 'public/suco.webp', name: 'Suco 300ml', desc: 'Sabores da estação, bem gelado.', u: 6 },
+    { slot: 'dish-bebidas-5', img: 'public/agua.webp', name: 'Água 500ml', desc: 'Com ou sem gás.', u: 3 }
+  ]
+};
+
+const money = n => 'R$ ' + n.toFixed(2).replace('.', ',');
+
+class Component extends DCLogic {
+  state = {
+    tab: 'porcoes', sizes: {}, cart: [], open: false, mode: 'entrega',
+    nome: '', endereco: '', obs: '',
+    w: typeof window !== 'undefined' ? window.innerWidth : 1280
+  };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    try {
+      const saved = JSON.parse(localStorage.getItem('bp-cart') || 'null');
+      if (saved && Array.isArray(saved.cart)) {
+        this.setState({ cart: saved.cart, nome: saved.nome || '', endereco: saved.endereco || '', obs: saved.obs || '', mode: saved.mode || 'entrega' });
+      }
+    } catch (e) {}
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  componentDidUpdate() {
+    try {
+      const s = this.state;
+      localStorage.setItem('bp-cart', JSON.stringify({ cart: s.cart, nome: s.nome, endereco: s.endereco, obs: s.obs, mode: s.mode }));
+    } catch (e) {}
+  }
+
+  sizesFor(d) {
+    if (d.u != null) return [{ key: 'u', label: 'Un', price: d.u }];
+    const out = [];
+    if (d.p != null) out.push({ key: 'p', label: 'P', price: d.p });
+    if (d.g != null) out.push({ key: 'g', label: 'G', price: d.g });
+    return out;
+  }
+
+  add(d, size) {
+    const key = d.slot + '|' + size.key;
+    this.setState(s => {
+      const cart = s.cart.slice();
+      const i = cart.findIndex(c => c.key === key);
+      if (i >= 0) cart[i] = Object.assign({}, cart[i], { qty: cart[i].qty + 1 });
+      else cart.push({ key: key, name: d.name, sizeLabel: size.label === 'Un' ? 'Unidade' : 'Tamanho ' + size.label, price: size.price, qty: 1 });
+      return { cart: cart, open: true };
+    });
+  }
+
+  setQty(key, delta) {
+    this.setState(s => ({
+      cart: s.cart
+        .map(c => (c.key === key ? Object.assign({}, c, { qty: c.qty + delta }) : c))
+        .filter(c => c.qty > 0)
+    }));
+  }
+
+  renderVals() {
+    const st = this.state;
+    const isMobile = st.w < 768;
+    const phone = this.props.whatsappNumber || '5591983370031';
+    const list = MENU[st.tab] || MENU.porcoes;
+
+    const dishes = list.map((d, i) => {
+      const sizes = this.sizesFor(d);
+      const sel = st.sizes[d.slot] || sizes[0].key;
+      const picked = sizes.find(s => s.key === sel) || sizes[0];
+      return {
+        slot: d.slot, img: d.img || '', name: d.name, desc: d.desc, star: d.star ? true : '',
+        delay: (i * 0.05).toFixed(2) + 's',
+        border: 'rgba(245,240,232,0.14)',
+        sizes: sizes.map(s => {
+          const on = s.key === picked.key;
+          return {
+            label: s.label, price: money(s.price),
+            border: on ? '#E01E1E' : 'rgba(245,240,232,0.22)',
+            bg: on ? 'rgba(224,30,30,0.18)' : 'transparent',
+            fg: on ? '#F5F0E8' : 'rgba(245,240,232,0.8)',
+            pick: () => this.setState(prev => ({ sizes: Object.assign({}, prev.sizes, { [d.slot]: s.key }) }))
+          };
+        }),
+        addLabel: 'Adicionar · ' + money(picked.price),
+        add: () => this.add(d, picked)
+      };
+    });
+
+    const count = st.cart.reduce((n, c) => n + c.qty, 0);
+    const total = st.cart.reduce((n, c) => n + c.qty * c.price, 0);
+
+    const lines = st.cart.map(c => '• ' + c.qty + 'x ' + c.name + ' (' + c.sizeLabel + ') — ' + money(c.qty * c.price));
+    let msg = '*Pedido — Bistrô Porções*\n\n' + lines.join('\n') + '\n\n*Total: ' + money(total) + '*';
+    if (st.nome.trim()) msg += '\n\nNome: ' + st.nome.trim();
+    msg += '\n' + (st.mode === 'entrega' ? 'Entrega: ' + (st.endereco.trim() || 'a combinar') : 'Retirada no local');
+    if (st.obs.trim()) msg += '\nObs: ' + st.obs.trim();
+
+    const tabOn = { border: '#E01E1E', bg: '#E01E1E', fg: '#F5F0E8' };
+    const tabOff = { border: 'rgba(245,240,232,0.25)', bg: 'rgba(245,240,232,0.06)', fg: 'rgba(245,240,232,0.85)' };
+    const t = k => (st.tab === k ? tabOn : tabOff);
+    const m = k => (st.mode === k ? tabOn : tabOff);
+
+    return {
+      dishes: dishes,
+      cartItems: st.cart.map(c => ({
+        name: c.name, sizeLabel: c.sizeLabel, qty: c.qty,
+        unit: money(c.price), total: money(c.qty * c.price),
+        inc: () => this.setQty(c.key, 1),
+        dec: () => this.setQty(c.key, -1)
+      })),
+      cartEmpty: st.cart.length === 0 ? true : '',
+      cartCount: count,
+      cartTotal: money(total),
+      barDisplay: count > 0 && !st.open ? 'block' : 'none',
+      backDisplay: isMobile ? 'none' : 'flex',
+      tabLabelDisplay: st.w < 900 ? 'none' : 'flex',
+      drawerX: st.open ? '0%' : '105%',
+      overlayOpacity: st.open ? 1 : 0,
+      overlayVis: st.open ? 'visible' : 'hidden',
+      openCart: () => this.setState({ open: true }),
+      closeCart: () => this.setState({ open: false }),
+      orderLink: 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg),
+      sendOpacity: count > 0 ? 1 : 0.45,
+      sendPointer: count > 0 ? 'auto' : 'none',
+      nome: st.nome, endereco: st.endereco, obs: st.obs,
+      setNome: e => this.setState({ nome: e.target.value }),
+      setEndereco: e => this.setState({ endereco: e.target.value }),
+      setObs: e => this.setState({ obs: e.target.value }),
+      addrDisplay: st.mode === 'entrega' ? 'block' : 'none',
+      pickEntrega: () => this.setState({ mode: 'entrega' }),
+      pickRetirada: () => this.setState({ mode: 'retirada' }),
+      modeBorderA: m('entrega').border, modeBgA: m('entrega').bg, modeFgA: m('entrega').fg,
+      modeBorderB: m('retirada').border, modeBgB: m('retirada').bg, modeFgB: m('retirada').fg,
+      pickPorcoes: () => this.setState({ tab: 'porcoes' }),
+      pickDoces: () => this.setState({ tab: 'doces' }),
+      pickBebidas: () => this.setState({ tab: 'bebidas' }),
+      tabBorderA: t('porcoes').border, tabBgA: t('porcoes').bg, tabFgA: t('porcoes').fg,
+      tabBorderB: t('doces').border, tabBgB: t('doces').bg, tabFgB: t('doces').fg,
+      tabBorderC: t('bebidas').border, tabBgC: t('bebidas').bg, tabFgC: t('bebidas').fg
+    };
+  }
+}
+
+</script>
+</body>
+</html>
