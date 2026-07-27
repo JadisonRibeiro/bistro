@@ -78,25 +78,27 @@
   </div>
 
   <section style="padding:clamp(2rem,6vw,3.5rem) 1.25rem clamp(7rem,16vw,9rem)">
-    <div style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr)); gap:clamp(0.9rem,2.5vw,1.35rem)">
+    <div style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr)); gap:{{ gridGap }}">
       <sc-for list="{{ dishes }}" as="d" hint-placeholder-count="6">
-        <article style="position:relative; overflow:hidden; display:flex; flex-direction:column; gap:0.7rem; padding:clamp(1rem,3vw,1.25rem); background:#121110; border:1px solid {{ d.border }}; border-radius:3px; box-shadow:0 24px 50px -34px rgba(0,0,0,0.95); opacity:0; animation:fadeUp .5s cubic-bezier(.22,1,.36,1) forwards; animation-delay:{{ d.delay }}; transition:border-color .3s ease, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease" style-hover="transform:translateY(-4px); border-color:#E01E1E; box-shadow:0 26px 55px -26px rgba(224,30,30,0.7)">
+        <article style="position:relative; overflow:hidden; display:flex; flex-direction:{{ d.dir }}; gap:{{ d.gap }}; padding:{{ d.pad }}; background:#121110; border:1px solid {{ d.border }}; border-radius:3px; box-shadow:0 24px 50px -34px rgba(0,0,0,0.95); opacity:0; animation:fadeUp .5s cubic-bezier(.22,1,.36,1) forwards; animation-delay:{{ d.delay }}; transition:border-color .3s ease, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease" style-hover="transform:translateY(-4px); border-color:#E01E1E; box-shadow:0 26px 55px -26px rgba(224,30,30,0.7)">
           <sc-if value="{{ d.star }}" hint-placeholder-val="{{ true }}">
-            <span style="position:absolute; top:0; right:0; z-index:3; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:0.6rem; padding:0.3rem 0.55rem">Estrela da casa</span>
+            <span style="position:absolute; top:0; right:0; z-index:3; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:{{ d.starFont }}; padding:{{ d.starPad }}">{{ d.starLabel }}</span>
           </sc-if>
-          <div style="position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:2px; background:rgba(10,10,10,0.6)">
+          <div style="position:relative; flex:none; width:{{ d.imgW }}; aspect-ratio:{{ d.imgRatio }}; overflow:hidden; border-radius:2px; background:rgba(10,10,10,0.6)">
             <image-slot id="{{ d.slot }}" src="{{ d.img }}" shape="rect" fit="cover" placeholder="{{ d.name }}"></image-slot>
           </div>
-          <h2 style="margin:0; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.03em; font-size:clamp(1.1rem,3.6vw,1.3rem); line-height:1.1">{{ d.name }}</h2>
-          <p style="margin:0; font-size:0.82rem; line-height:1.5; color:rgba(245,240,232,0.6); text-wrap:pretty; flex:1">{{ d.desc }}</p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem">
-            <sc-for list="{{ d.sizes }}" as="s" hint-placeholder-count="2">
-              <button type="button" onClick="{{ s.pick }}" style="flex:1 1 6.5rem; min-height:48px; display:flex; align-items:center; justify-content:center; gap:0.45rem; cursor:pointer; border-radius:2px; padding:0 0.6rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-size:0.9rem; transition:background .25s ease, border-color .25s ease, color .25s ease; border:1px solid {{ s.border }}; background:{{ s.bg }}; color:{{ s.fg }}">
-                <span style="font-size:0.7rem; letter-spacing:0.16em; opacity:0.75">{{ s.label }}</span>{{ s.price }}
-              </button>
-            </sc-for>
+          <div style="display:flex; flex-direction:column; gap:{{ d.innerGap }}; flex:1; min-width:0">
+            <h2 style="margin:0; padding-right:{{ d.namePadR }}; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.03em; font-size:{{ d.nameSize }}; line-height:1.15">{{ d.name }}</h2>
+            <p style="margin:0; font-size:{{ d.descSize }}; line-height:1.45; color:rgba(245,240,232,0.6); text-wrap:pretty; flex:1; display:{{ d.descDisplay }}; -webkit-line-clamp:{{ d.descLines }}; -webkit-box-orient:vertical; overflow:hidden">{{ d.desc }}</p>
+            <div style="display:flex; flex-wrap:wrap; gap:{{ d.innerGap }}">
+              <sc-for list="{{ d.sizes }}" as="s" hint-placeholder-count="2">
+                <button type="button" onClick="{{ s.pick }}" style="flex:1 1 {{ d.sizeBasis }}; min-height:{{ d.btnH }}; display:flex; align-items:center; justify-content:center; gap:0.4rem; cursor:pointer; border-radius:2px; padding:0 0.5rem; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.06em; font-size:{{ d.btnFont }}; transition:background .25s ease, border-color .25s ease, color .25s ease; border:1px solid {{ s.border }}; background:{{ s.bg }}; color:{{ s.fg }}">
+                  <span style="font-size:{{ d.sizeLabelFont }}; letter-spacing:0.14em; opacity:0.75">{{ s.label }}</span>{{ s.price }}
+                </button>
+              </sc-for>
+            </div>
+            <button type="button" onClick="{{ d.add }}" style="min-height:{{ d.btnH }}; display:flex; align-items:center; justify-content:center; gap:0.5rem; cursor:pointer; border:none; border-radius:2px; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; font-size:{{ d.btnFont }}; transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-2px); background:#F5F0E8; color:#0A0A0A">{{ d.addLabel }}</button>
           </div>
-          <button type="button" onClick="{{ d.add }}" style="min-height:48px; display:flex; align-items:center; justify-content:center; gap:0.5rem; cursor:pointer; border:none; border-radius:2px; background:#E01E1E; color:#F5F0E8; font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; font-size:0.88rem; transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1)" style-hover="transform:translateY(-2px); background:#F5F0E8; color:#0A0A0A">{{ d.addLabel }}</button>
         </article>
       </sc-for>
     </div>
@@ -270,11 +272,29 @@ class Component extends DCLogic {
     const phone = this.props.whatsappNumber || '5591983370031';
     const list = MENU[st.tab] || MENU.porcoes;
 
+    // No celular o card vira uma linha: miniatura quadrada a esquerda e o
+    // conteudo a direita. Isso troca a imagem 4/3 de largura total — que
+    // sozinha comia quase uma tela — por 5.5rem, cabendo varios pratos de
+    // uma vez. Os botoes ficam em 44px, o minimo para alvo de toque.
+    const card = isMobile
+      ? { dir: 'row', gap: '0.7rem', pad: '0.6rem', innerGap: '0.4rem',
+          imgW: '5.5rem', imgRatio: '1/1',
+          nameSize: '0.95rem', namePadR: '1.6rem',
+          descSize: '0.74rem', descDisplay: '-webkit-box', descLines: '2',
+          btnH: '44px', btnFont: '0.78rem', sizeBasis: '4.5rem', sizeLabelFont: '0.62rem',
+          starLabel: '★', starFont: '0.62rem', starPad: '0.15rem 0.3rem' }
+      : { dir: 'column', gap: '0.7rem', pad: 'clamp(1rem,3vw,1.25rem)', innerGap: '0.7rem',
+          imgW: '100%', imgRatio: '4/3',
+          nameSize: 'clamp(1.1rem,3.6vw,1.3rem)', namePadR: '0',
+          descSize: '0.82rem', descDisplay: 'block', descLines: 'none',
+          btnH: '48px', btnFont: '0.9rem', sizeBasis: '6.5rem', sizeLabelFont: '0.7rem',
+          starLabel: 'Estrela da casa', starFont: '0.6rem', starPad: '0.3rem 0.55rem' };
+
     const dishes = list.map((d, i) => {
       const sizes = this.sizesFor(d);
       const sel = st.sizes[d.slot] || sizes[0].key;
       const picked = sizes.find(s => s.key === sel) || sizes[0];
-      return {
+      return Object.assign({}, card, {
         slot: d.slot, img: d.img || '', name: d.name, desc: d.desc, star: d.star ? true : '',
         delay: (i * 0.05).toFixed(2) + 's',
         border: 'rgba(245,240,232,0.14)',
@@ -290,7 +310,7 @@ class Component extends DCLogic {
         }),
         addLabel: 'Adicionar · ' + money(picked.price),
         add: () => this.add(d, picked)
-      };
+      });
     });
 
     const count = st.cart.reduce((n, c) => n + c.qty, 0);
@@ -320,6 +340,7 @@ class Component extends DCLogic {
       cartTotal: money(total),
       barDisplay: count > 0 && !st.open ? 'block' : 'none',
       backDisplay: isMobile ? 'none' : 'flex',
+      gridGap: isMobile ? '0.6rem' : 'clamp(0.9rem,2.5vw,1.35rem)',
       tabLabelDisplay: st.w < 900 ? 'none' : 'flex',
       drawerX: st.open ? '0%' : '105%',
       overlayOpacity: st.open ? 1 : 0,
