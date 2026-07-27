@@ -317,10 +317,29 @@ class Component extends DCLogic {
     const total = st.cart.reduce((n, c) => n + c.qty * c.price, 0);
 
     const lines = st.cart.map(c => '• ' + c.qty + 'x ' + c.name + ' (' + c.sizeLabel + ') — ' + money(c.qty * c.price));
-    let msg = '*Pedido — Bistrô Porções*\n\n' + lines.join('\n') + '\n\n*Total: ' + money(total) + '*';
-    if (st.nome.trim()) msg += '\n\nNome: ' + st.nome.trim();
-    msg += '\n' + (st.mode === 'entrega' ? 'Entrega: ' + (st.endereco.trim() || 'a combinar') : 'Retirada no local');
-    if (st.obs.trim()) msg += '\nObs: ' + st.obs.trim();
+
+    // A mensagem abre como conversa, separa itens de entrega em blocos com
+    // titulo em negrito e fecha com a pergunta que a casa precisa responder.
+    // Sem nome, endereco ou obs a linha simplesmente nao entra.
+    const entrega = st.mode === 'entrega';
+    const bloco = [
+      'Olá, *Bistrô Porções*! 👋',
+      'Quero fazer um pedido pelo site:',
+      '',
+      '*🍽 ITENS*',
+      lines.join('\n'),
+      '',
+      '💰 *Total: ' + money(total) + '*  _(' + count + (count === 1 ? ' item' : ' itens') + ')_',
+      '',
+      entrega ? '*🛵 ENTREGA*' : '*🏠 RETIRADA NO LOCAL*'
+    ];
+    if (st.nome.trim()) bloco.push('👤 ' + st.nome.trim());
+    if (entrega) bloco.push('📍 ' + (st.endereco.trim() || '_endereço a combinar_'));
+    if (st.obs.trim()) bloco.push('📝 ' + st.obs.trim());
+    bloco.push('', entrega
+      ? 'Pode confirmar o valor e o tempo de entrega? 🙏'
+      : 'Pode confirmar o valor e o tempo de preparo? 🙏');
+    const msg = bloco.join('\n');
 
     const tabOn = { border: '#E01E1E', bg: '#E01E1E', fg: '#F5F0E8' };
     const tabOff = { border: 'rgba(245,240,232,0.25)', bg: 'rgba(245,240,232,0.06)', fg: 'rgba(245,240,232,0.85)' };
